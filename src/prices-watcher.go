@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"github.com/Microsoft/ApplicationInsights-Go/appinsights"
 	"log"
+	"os"
 	"sync"
 	"time"
 )
 
 func main() {
 
-	appInsightsClient := appinsights.NewTelemetryClient("5aec4d47-203e-480b-b7d4-da020d468e92")
+	appInsightsClient := appinsights.NewTelemetryClient(os.Getenv("APPSETTING_ApplicationInsightsInstrumentationKey"))
 
 	var urls = GetDataSource()
 
@@ -42,20 +43,6 @@ func main() {
 	wg.Wait()
 	select {
 	case <-appInsightsClient.Channel().Close(10 * time.Second):
-		// Ten second timeout for retries.
-
-		// If we got here, then all telemetry was submitted
-		// successfully, and we can proceed to exiting.
 	case <-time.After(30 * time.Second):
-		// Thirty second absolute timeout.  This covers any
-		// previous telemetry submission that may not have
-		// completed before Close was called.
-
-		// There are a number of reasons we could have
-		// reached here.  We gave it a go, but telemetry
-		// submission failed somewhere.  Perhaps old events
-		// were still retrying, or perhaps we're throttled.
-		// Either way, we don't want to wait around for it
-		// to complete, so let's just exit.
 	}
 }
