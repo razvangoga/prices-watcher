@@ -13,7 +13,7 @@ func main() {
 
 	appInsightsClient := appinsights.NewTelemetryClient(os.Getenv("APPSETTING_ApplicationInsightsInstrumentationKey"))
 
-	var urls = GetDataSource()
+	var urls = getPagesToWatch()
 
 	var wg sync.WaitGroup
 	wg.Add(len(urls))
