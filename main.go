@@ -1,4 +1,4 @@
-package main
+package prices_watcher
 
 import (
 	"fmt"

@@ -1,4 +1,4 @@
-package main
+package prices_watcher
 
 const Store_Bike24 = "bike24"
 const Store_FahhradDE = "fahhrad.de"
