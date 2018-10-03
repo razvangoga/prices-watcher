@@ -38,8 +38,8 @@ func main() {
 			log.Print(logMessage)
 
 			event := appinsights.NewEventTelemetry(fmt.Sprintf("[%s] [%s]", pg.Site, pg.Product))
-			event.Properties["Product"] = pg.Product
-			event.Properties["Site"] = pg.Site
+			event.Properties["product"] = pg.Product
+			event.Properties["site"] = pg.Site
 			event.Properties["price"] = fmt.Sprintf("%v", price)
 			event.Properties["elapsed"] = fmt.Sprintf("%v", elapsed)
 

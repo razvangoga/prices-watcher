@@ -11,16 +11,15 @@ import (
 
 type AzureBlobDataSource struct {
 	accountName string
-	accountKey string
+	accountKey  string
 }
 
 func (ads AzureBlobDataSource) get() pagesArray {
 
-	credential := azblob.NewSharedKeyCredential( ads.accountName, ads.accountKey)
+	credential := azblob.NewSharedKeyCredential(ads.accountName, ads.accountKey)
 	p := azblob.NewPipeline(credential, azblob.PipelineOptions{})
 
-	URL, _ := url.Parse(
-		fmt.Sprintf("https://%s.blob.core.windows.net/%s", ads.accountName, "priceswatcher"))
+	URL, _ := url.Parse(fmt.Sprintf("https://%s.blob.core.windows.net/%s", ads.accountName, "priceswatcher"))
 
 	containerURL := azblob.NewContainerURL(*URL, p)
 
