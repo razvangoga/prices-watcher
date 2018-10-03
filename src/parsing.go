@@ -8,13 +8,17 @@ import (
 )
 
 func GetPrice(page page) float64 {
-	htmlDom, err := htmlquery.LoadURL(page.url)
+	htmlDom, err := htmlquery.LoadURL(page.Url)
 
 	if err != nil {
 		panic(err)
 	}
 
-	priceNode := htmlquery.FindOne(htmlDom, page.xpathQuery)
+	priceNode := htmlquery.FindOne(htmlDom, page.XpathQuery)
+
+	if priceNode == nil {
+		panic("Unable to locate price node")
+	}
 
 	rawPrice := htmlquery.InnerText(priceNode)
 	price := strings.Replace(rawPrice, "€", "", -1)

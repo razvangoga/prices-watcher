@@ -11,9 +11,18 @@ import (
 
 func main() {
 
+	accountName, accountKey := os.Getenv("AZURE_STORAGE_ACCOUNT"), os.Getenv("AZURE_STORAGE_ACCESS_KEY")
 	appInsightsClient := appinsights.NewTelemetryClient(os.Getenv("APPSETTING_ApplicationInsightsInstrumentationKey"))
 
-	var urls = getPagesToWatch()
+	var dataSource IDataSource
+
+	if accountName != "" {
+		dataSource = AzureBlobDataSource { accountKey:accountKey, accountName:accountName}
+	} else {
+		dataSource = StaticDataSource { }
+	}
+
+	var urls = dataSource.get()
 
 	var wg sync.WaitGroup
 	wg.Add(len(urls))
@@ -25,12 +34,12 @@ func main() {
 			price := GetPrice(pg)
 			elapsed := time.Since(start)
 
-			logMessage := fmt.Sprintf("[%s] [%s] - found : %.2f in %s\n", pg.product, pg.site, price, elapsed)
+			logMessage := fmt.Sprintf("[%s] [%s] - found : %.2f in %s\n", pg.Product, pg.Site, price, elapsed)
 			log.Print(logMessage)
 
-			event := appinsights.NewEventTelemetry(fmt.Sprintf("[%s] [%s]", pg.site, pg.product))
-			event.Properties["product"] = pg.product
-			event.Properties["site"] = pg.site
+			event := appinsights.NewEventTelemetry(fmt.Sprintf("[%s] [%s]", pg.Site, pg.Product))
+			event.Properties["Product"] = pg.Product
+			event.Properties["Site"] = pg.Site
 			event.Properties["price"] = fmt.Sprintf("%v", price)
 			event.Properties["elapsed"] = fmt.Sprintf("%v", elapsed)
 

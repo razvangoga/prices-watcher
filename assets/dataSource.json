@@ -1,0 +1,26 @@
+[
+  {
+    "site": "bike24",
+    "product": "Garmin Edge 1030",
+    "url": "https://www.bike24.de/1.php?content=8;product=242780",
+    "xpathQuery": "//span[@itemprop='price']"
+  },
+  {
+    "site": "bike24",
+    "product": "Garmin Edge 820",
+    "url": "https://www.bike24.de/1.php?content=8;product=182408",
+    "xpathQuery": "//span[@itemprop='price']"
+  },
+  {
+    "site": "fahhrad.de",
+    "product": "Garmin Edge 1030",
+    "url": "https://www.fahrrad.de/garmin-edge-1030-gps-fahrradcomputer-bundle-schwarz-696317.html",
+    "xpathQuery": "//div[@class='cyc-margin_right-2 cyc-typo_display-3  cyc-color-text_sale']"
+  },
+  {
+    "site": "fahhrad.de",
+    "product": "Garmin Edge 820",
+    "url": "https://www.fahrrad.de/garmin-edge-820-gps-fahrradcomputer-inkl-premium-hf-brustgurt-geschwindigtrittfrequenz-531556.html",
+    "xpathQuery": "//div[@class='cyc-margin_right-2 cyc-typo_display-3  cyc-color-text_sale']"
+  }
+]

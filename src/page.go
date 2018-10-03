@@ -1,10 +1,10 @@
 package main
 
 type page struct {
-	site       string
-	product    string
-	url        string
-	xpathQuery string
+	Site       string
+	Product    string
+	Url        string
+	XpathQuery string
 }
 
 type pagesArray []page
