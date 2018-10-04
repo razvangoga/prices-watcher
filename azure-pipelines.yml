@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/go
 
 pool:
-  vmImage: 'VS2017-Win2016' # Options: 'macOS-10.13', 'VS2017-Win2016', 'Ubuntu 16.04'
+  vmImage: 'Ubuntu 16.04' # Options: 'macOS-10.13', 'VS2017-Win2016', 'Ubuntu 16.04'
 
 variables:
   GOBIN:  '$(GOPATH)/bin' # Go binaries path

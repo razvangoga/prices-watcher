@@ -1,2 +1,2 @@
-go build -o ./output/pw.exe ./src/
+go build -o ./output/pw.exe
 Write-Host "Build completed..."
