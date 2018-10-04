@@ -1,4 +1,4 @@
-package prices_watcher
+package main
 
 type page struct {
 	Site       string
