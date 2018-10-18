@@ -3,7 +3,7 @@ $jobName = "prices-watcher"
 Add-Type -assembly  System.IO.Compression.FileSystem
 $archive = [System.IO.Compression.ZipFile]::Open("$pwd/$jobName.zip","Create")
 
-$exe = "$pwd/output/$jobName.exe"
+$exe = "$pwd/$jobName.exe"
 $exeZipPath = "\Content\D_C\a\1\s\$jobName\obj\Debug\Package\PackageTmp\app_data\jobs\triggered\$jobName"
 
 $settings = "$pwd/settings.json"
