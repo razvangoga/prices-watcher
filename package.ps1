@@ -4,12 +4,12 @@ Add-Type -assembly  System.IO.Compression.FileSystem
 $archive = [System.IO.Compression.ZipFile]::Open("$pwd/$jobName.zip","Create")
 
 $exe = "$pwd/$jobName.exe"
-$exeZipPath = "\app_data\jobs\triggered\$jobName"
-
 $settings = "$pwd/settings.json"
 
-$zexe = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive,$exe,"$exeZipPath\prices-watcher.exe","optimal")
-$zsettings = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive,$settings,"settings.json","optimal")
+$jobPath = "\app_data\jobs\triggered\$jobName"
+
+$zexe = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive,$exe,"$jobPath\prices-watcher.exe","optimal")
+$zsettings = [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive,$settings,"$jobPath\settings.json","optimal")
 
 $archive.Dispose()
 
