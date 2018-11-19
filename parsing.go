@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"github.com/antchfx/htmlquery"
 	"strconv"
@@ -22,6 +21,7 @@ func GetPrice(page page) float64 {
 
 	rawPrice := htmlquery.InnerText(priceNode)
 	price := strings.Replace(rawPrice, "€", "", -1)
+	price = strings.Replace(price, "EUR", "", -1)
 	price = strings.Replace(price, ".", "", -1)
 	price = strings.Replace(price, ",", ".", -1)
 	price = strings.TrimSpace(price)
